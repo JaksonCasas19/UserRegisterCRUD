@@ -4,6 +4,29 @@ from tkinter import messagebox
 
 import sqlite3
 
+
+#---- Funciones -----
+
+def conexionBBDD():
+	miConexion = sqlite3.connect("Usuarios")
+	miCursor = miConexion.cursor()
+
+	try:
+		miCursor.execute('''
+			CREATE TABLE DatosUsuarios(
+			Id integer PRIMARY KEY AUTOINCREMENT,
+			Nombre_Usuario varchar(50),
+			Password varchar(50),
+			Apellido varchar(50),
+			Direccion varchar(50),
+			Comentarios varchar(100)
+			)
+			''')
+		messagebox.showinfo("BBDD","¡BBDD creada con éxito!")
+	except:
+		messagebox.showwarning("¡Atención!","La BBDD ya existe")
+
+
 root = Tk()
 root.title("Registro")
 root.config(bg="white")
@@ -15,7 +38,7 @@ root.resizable(False,False)
 
 #Empezar barra
 bbddMenu = Menu(barraMenu, tearoff=0)
-bbddMenu.add_command(label="Conectar")
+bbddMenu.add_command(label="Conectar", command=conexionBBDD)
 bbddMenu.add_command(label="Salir")
 
 borrarMenu = Menu(barraMenu, tearoff=0)
