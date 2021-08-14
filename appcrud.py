@@ -31,6 +31,15 @@ def salirAplicacion():
 	if(valor == "yes"):
 		root.destroy()
 
+#Resetear campos
+def limpiarCampos():
+	miId.set("")
+	miNombre.set("")
+	miPass.set("")
+	miApellido.set("")
+	miDireccion.set("")
+	cuadroComentario.delete(1.0,END)
+
 root = Tk()
 root.title("Registro")
 root.config(bg="white")
@@ -46,7 +55,7 @@ bbddMenu.add_command(label="Conectar", command=conexionBBDD)
 bbddMenu.add_command(label="Salir",command=salirAplicacion)
 
 borrarMenu = Menu(barraMenu, tearoff=0)
-borrarMenu.add_command(label="Borrar campos")
+borrarMenu.add_command(label="Borrar campos", command=limpiarCampos)
 
 CrudMenu = Menu(barraMenu, tearoff=0)
 CrudMenu.add_command(label="Crear")
@@ -59,7 +68,7 @@ ayudaMenu.add_command(label="Licencia")
 ayudaMenu.add_command(label="Acerca de")
 
 barraMenu.add_cascade(label="Archivo", menu=bbddMenu)
-barraMenu.add_cascade(label="Borrar", menu=borrarMenu)
+barraMenu.add_cascade(label="Limpiar", menu=borrarMenu)
 barraMenu.add_cascade(label="CRUD", menu=CrudMenu)
 barraMenu.add_cascade(label="Ayuda", menu=ayudaMenu)
 
@@ -76,16 +85,24 @@ miFrame=Frame(root)
 miFrame.config(bg="white")
 miFrame.pack()
 
-cuadroId = Entry(miFrame)
+miId = StringVar()
+miNombre = StringVar()
+miApellido = StringVar()
+miPass = StringVar()
+miDireccion =StringVar()
+
+
+cuadroId = Entry(miFrame,textvariable=miId)
 cuadroId.grid(row=0,column=1,padx=10,pady=10)
-cuadroNombre = Entry(miFrame)
+cuadroId.config(justify="right")
+cuadroNombre = Entry(miFrame,textvariable=miNombre)
 cuadroNombre.grid(row=1,column=1,padx=10,pady=10)
-cuadroPassword = Entry(miFrame)
+cuadroPassword = Entry(miFrame,textvariable=miPass)
 cuadroPassword.grid(row=2,column=1,padx=10,pady=10)
 cuadroPassword.config(show="*")
-cuadroApellido = Entry(miFrame)
+cuadroApellido = Entry(miFrame,textvariable=miApellido)
 cuadroApellido.grid(row=3,column=1,padx=10,pady=10)
-cuadroDireccion = Entry(miFrame)
+cuadroDireccion = Entry(miFrame,textvariable=miDireccion)
 cuadroDireccion.grid(row=4,column=1,padx=10,pady=10)
 
 cuadroComentario = Text(miFrame, width=16,height=5)
