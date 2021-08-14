@@ -53,6 +53,24 @@ def crear():
 	miConexion.commit()
 	messagebox.showinfo("BBDD","¡Registro insertado con éxito!")
 
+def leer():
+	miConexion=sqlite3.connect("Usuarios")
+	miCursor = miConexion.cursor()
+	miCursor.execute("SELECT * FROM DatosUsuarios where Id="+miId.get())
+
+	elUsuario = miCursor.fetchall()
+
+	for usuario in elUsuario:
+		miId.set(usuario[0])
+		miNombre.set(usuario[1])
+		miPass.set(usuario[2])
+		miApellido.set(usuario[3])
+		miDireccion.set(usuario[4])
+		cuadroComentario.insert(1.0,usuario[5])
+
+	miConexion.commit()
+
+
 root = Tk()
 root.title("Registro")
 root.config(bg="white")
@@ -72,7 +90,7 @@ borrarMenu.add_command(label="Borrar campos", command=limpiarCampos)
 
 CrudMenu = Menu(barraMenu, tearoff=0)
 CrudMenu.add_command(label="Crear",command=crear)
-CrudMenu.add_command(label="Leer")
+CrudMenu.add_command(label="Leer",command=leer)
 CrudMenu.add_command(label="Editar")
 CrudMenu.add_command(label="Eliminar")
 
@@ -143,11 +161,10 @@ comentarioLabel.grid(row=5,column=0,sticky="e",pady=10,padx=10)
 miFrame2=Frame(root)
 miFrame2.pack()
 
-
 botonCrear=Button(miFrame2, text="Crear",bd=0,bg="dodger blue",fg="white",command=crear)
 botonCrear.grid(row=1,column=0,sticky="e",padx=10,pady=10)
 
-botonLeer=Button(miFrame2, text="Leer",bd=0,bg="SeaGreen3",fg="white")
+botonLeer=Button(miFrame2, text="Leer",bd=0,bg="SeaGreen3",fg="white",command=leer)
 botonLeer.grid(row=1,column=1,sticky="e",padx=10,pady=10)
 
 botonActualizar=Button(miFrame2, text="Actualizar",bd=0,bg="goldenrod1",fg="white")
