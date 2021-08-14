@@ -108,7 +108,15 @@ barraMenu.add_cascade(label="Ayuda", menu=ayudaMenu)
 FrameCabez = Frame(root)
 FrameCabez.pack()
 
-titulo = Label(FrameCabez, text="500\nTotal Usuarios",bg="SeaGreen3",fg="white",padx=100,pady=10,justify=CENTER)
+
+miConexion2=sqlite3.connect("Usuarios")
+miCursor2 = miConexion2.cursor()
+num = miCursor2.execute("SELECT COUNT(Id) FROM DatosUsuarios")
+ok = str(num.fetchone())
+miConexion2.commit()
+
+
+titulo = Label(FrameCabez, text=f"{ok[1]}\nTotal Usuarios",bg="SeaGreen3",fg="white",padx=100,pady=10,justify=CENTER)
 titulo.grid(row=0,column=0,sticky=E)
 
 #----- Empezar campos -----
