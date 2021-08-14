@@ -10,7 +10,7 @@ root.config(bg="white")
 
 barraMenu = Menu(root)
 root.config(menu=barraMenu, width=300,height=300)
-root.geometry('310x460')
+root.geometry('310x480')
 root.resizable(False,False) 
 
 #Empezar barra
@@ -87,16 +87,16 @@ miFrame2=Frame(root)
 miFrame2.pack()
 
 
-botonCrear=Button(miFrame2, text="Crear")
+botonCrear=Button(miFrame2, text="Crear",bd=0,bg="dodger blue",fg="white")
 botonCrear.grid(row=1,column=0,sticky="e",padx=10,pady=10)
 
-botonLeer=Button(miFrame2, text="Leer")
-botonLeer.grid(row=1,column=0,sticky="e",padx=10,pady=10)
+botonLeer=Button(miFrame2, text="Leer",bd=0,bg="SeaGreen3",fg="white")
+botonLeer.grid(row=1,column=1,sticky="e",padx=10,pady=10)
 
-botonActualizar=Button(miFrame2, text="Actualizar")
-botonActualizar.grid(row=1,column=0,sticky="e",padx=10,pady=10)
+botonActualizar=Button(miFrame2, text="Actualizar",bd=0,bg="goldenrod1",fg="white")
+botonActualizar.grid(row=1,column=2,sticky="e",padx=10,pady=10)
 
-botonEliminar=Button(miFrame2, text="Eliminar")
-botonEliminar.grid(row=1,column=0,sticky="e",padx=10,pady=10)
+botonEliminar=Button(miFrame2, text="Eliminar",bd=0,bg="firebrick1",fg="white")
+botonEliminar.grid(row=1,column=3,sticky="e",padx=10,pady=10)
 
 root.mainloop()
