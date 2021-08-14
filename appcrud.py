@@ -26,6 +26,10 @@ def conexionBBDD():
 	except:
 		messagebox.showwarning("¡Atención!","La BBDD ya existe")
 
+def salirAplicacion():
+	valor = messagebox.askquestion("Salir","¿Deseas salir de la aplicación?")
+	if(valor == "yes"):
+		root.destroy()
 
 root = Tk()
 root.title("Registro")
@@ -39,7 +43,7 @@ root.resizable(False,False)
 #Empezar barra
 bbddMenu = Menu(barraMenu, tearoff=0)
 bbddMenu.add_command(label="Conectar", command=conexionBBDD)
-bbddMenu.add_command(label="Salir")
+bbddMenu.add_command(label="Salir",command=salirAplicacion)
 
 borrarMenu = Menu(barraMenu, tearoff=0)
 borrarMenu.add_command(label="Borrar campos")
