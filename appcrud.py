@@ -69,22 +69,34 @@ scrollVert.grid(row=5,column=1,pady=10,sticky="nse")
 cuadroComentario.config(yscrollcommand=scrollVert.set)
 
 idLabel = Label(miFrame, text="Id:",bg="white")
-idLabel.grid(row=0,column=0,sticky="w",pady=10,padx=10)
-idLabel = Label(miFrame, text="Nombre:",bg="white")
-idLabel.grid(row=1,column=0,sticky="w",pady=10,padx=10)
-idLabel = Label(miFrame, text="Password:",bg="white")
-idLabel.grid(row=2,column=0,sticky="w",pady=10,padx=10)
-idLabel = Label(miFrame, text="Apellido:",bg="white")
-idLabel.grid(row=3,column=0,sticky="w",pady=10,padx=10)
-idLabel = Label(miFrame, text="Direccion:",bg="white")
-idLabel.grid(row=4,column=0,sticky="w",pady=10,padx=10)
-idLabel = Label(miFrame, text="Comentarios:",bg="white")
-idLabel.grid(row=5,column=0,sticky="w",pady=10,padx=10)
+idLabel.grid(row=0,column=0,sticky="e",pady=10,padx=10)
+nombreLabel = Label(miFrame, text="Nombre:",bg="white")
+nombreLabel.grid(row=1,column=0,sticky="e",pady=10,padx=10)
+passwordLabel = Label(miFrame, text="Password:",bg="white")
+passwordLabel.grid(row=2,column=0,sticky="e",pady=10,padx=10)
+apellidoLabel = Label(miFrame, text="Apellido:",bg="white")
+apellidoLabel.grid(row=3,column=0,sticky="e",pady=10,padx=10)
+direccionLabel = Label(miFrame, text="Direccion:",bg="white")
+direccionLabel.grid(row=4,column=0,sticky="e",pady=10,padx=10)
+comentarioLabel = Label(miFrame, text="Comentarios:",bg="white")
+comentarioLabel.grid(row=5,column=0,sticky="e",pady=10,padx=10)
 
 
 #Empezar botones
-miFrame1=Frame(root)
-miFrame1.pack()
+miFrame2=Frame(root)
+miFrame2.pack()
 
+
+botonCrear=Button(miFrame2, text="Crear")
+botonCrear.grid(row=1,column=0,sticky="e",padx=10,pady=10)
+
+botonLeer=Button(miFrame2, text="Leer")
+botonLeer.grid(row=1,column=0,sticky="e",padx=10,pady=10)
+
+botonActualizar=Button(miFrame2, text="Actualizar")
+botonActualizar.grid(row=1,column=0,sticky="e",padx=10,pady=10)
+
+botonEliminar=Button(miFrame2, text="Eliminar")
+botonEliminar.grid(row=1,column=0,sticky="e",padx=10,pady=10)
 
 root.mainloop()
