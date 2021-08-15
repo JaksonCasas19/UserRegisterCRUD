@@ -44,14 +44,19 @@ def crear():
 	miConexion=sqlite3.connect("Usuarios")
 	miCursor = miConexion.cursor()
 
-	miCursor.execute("INSERT INTO DatosUsuarios values(NULL,'"+miNombre.get()+
+	"""miCursor.execute("INSERT INTO DatosUsuarios values(NULL,'"+miNombre.get()+
 		"','"+miPass.get()+
 		"','"+miApellido.get()+
 		"','"+miDireccion.get()+
-		"','"+cuadroComentario.get("1.0",END)+"')")
+		"','"+cuadroComentario.get("1.0",END)+"')")"""
+
+	datos=miNombre.get(),miPass.get(),miApellido.get(),miDireccion.get(),cuadroComentario.get(1.0,END)
+	miCursor.execute("INSERT INTO DatosUsuarios VALUES(NULL,?,?,?,?,?)",(datos))
 
 	miConexion.commit()
 	messagebox.showinfo("BBDD","¡Registro insertado con éxito!")
+
+
 
 def leer():
 	cuadroComentario.delete(1.0,END)
@@ -74,9 +79,11 @@ def leer():
 def actualizar():
 	miConexion=sqlite3.connect("Usuarios")
 	miCursor = miConexion.cursor()
-	miCursor.execute("UPDATE DatosUsuarios SET Nombre_Usuario='"+miNombre.get()+"',Password='"+miPass.get()+"',Apellido='"+miApellido.get()+
+	"""miCursor.execute("UPDATE DatosUsuarios SET Nombre_Usuario='"+miNombre.get()+"',Password='"+miPass.get()+"',Apellido='"+miApellido.get()+
 		"',Direccion='"+miDireccion.get()+"',Comentarios='"+cuadroComentario.get(1.0,END)+"'WHERE Id="+miId.get())
-
+	"""
+	datos=miNombre.get(),miPass.get(),miApellido.get(),miDireccion.get(),cuadroComentario.get(1.0,END)
+	miCursor.execute("UPDATE DatosUsuarios SET Nombre_Usuario=?,Password=?,Apellido=?,Direccion=?,Comentarios=?"+"WHERE Id="+miId.get(),(datos))
 	miConexion.commit()
 	messagebox.showinfo("BBDD","¡Registro actualizado con éxito!")
 
