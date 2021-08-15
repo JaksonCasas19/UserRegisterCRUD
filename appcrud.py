@@ -54,6 +54,7 @@ def crear():
 	messagebox.showinfo("BBDD","¡Registro insertado con éxito!")
 
 def leer():
+	cuadroComentario.delete(1.0,END)
 	miConexion=sqlite3.connect("Usuarios")
 	miCursor = miConexion.cursor()
 	miCursor.execute("SELECT * FROM DatosUsuarios where Id="+miId.get())
@@ -79,6 +80,14 @@ def actualizar():
 	miConexion.commit()
 	messagebox.showinfo("BBDD","¡Registro actualizado con éxito!")
 
+def eliminar():
+	miConexion=sqlite3.connect("Usuarios")
+	miCursor = miConexion.cursor()
+	miCursor.execute("DELETE FROM DatosUsuarios where Id="+miId.get())
+	miConexion.commit()
+	messagebox.showinfo("BBDD","¡Se elimino con éxito!")
+
+
 root = Tk()
 root.title("Registro")
 root.config(bg="white")
@@ -100,7 +109,7 @@ CrudMenu = Menu(barraMenu, tearoff=0)
 CrudMenu.add_command(label="Crear",command=crear)
 CrudMenu.add_command(label="Leer",command=leer)
 CrudMenu.add_command(label="Editar",command=actualizar)
-CrudMenu.add_command(label="Eliminar")
+CrudMenu.add_command(label="Eliminar",command=eliminar)
 
 ayudaMenu = Menu(barraMenu, tearoff=0)
 ayudaMenu.add_command(label="Licencia")
@@ -186,7 +195,7 @@ botonLeer.grid(row=1,column=1,sticky="e",padx=10,pady=10)
 botonActualizar=Button(miFrame2, text="Actualizar",bd=0,bg="goldenrod1",fg="white",command=actualizar)
 botonActualizar.grid(row=1,column=2,sticky="e",padx=10,pady=10)
 
-botonEliminar=Button(miFrame2, text="Eliminar",bd=0,bg="firebrick1",fg="white")
+botonEliminar=Button(miFrame2, text="Eliminar",bd=0,bg="firebrick1",fg="white",command=eliminar)
 botonEliminar.grid(row=1,column=3,sticky="e",padx=10,pady=10)
 
 root.mainloop()
